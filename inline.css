@@ -1,0 +1,39 @@
+			.info-text
+			{
+				height:130px
+			}
+			.info-card
+			{
+				margin-top: 16px;
+				margin-bottom: 16px;
+				width: 80%;
+				margin-left: auto;
+				margin-right:auto
+			}
+			.swipe-area 
+			{
+				position: absolute;
+				width: 75px;
+				left: 0;
+				top: 0;
+				height: 100%;
+				z-index: 0;
+			}
+			.AWAD_title
+			{
+				font-size: 10pt; color: silver; font-weight: bold;
+			}
+			.AWAD_quotation
+			{
+				text-decoration: none; color: green;
+			}
+			.AWAD_byline
+			{
+				font-style: italic;
+			}
+			#stickyHeaderL {
+				width: 100%;
+				background:black;
+				color:white;
+				margin-bottom: 10px;
+			}
