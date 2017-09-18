@@ -1,3 +1,7 @@
+<?php
+// Start the session
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -7,7 +11,7 @@
 		<link rel="stylesheet" href="w3.css">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		<script src="jquery-3.2.1.js"></script>
-		<script src="js/jquery.touchSwipe.min.js"></script>  
+		<script src="jquery.touchSwipe.min.js"></script> 
 		     
 		<style>
 		#formButton
@@ -28,63 +32,6 @@
 			background-color: white;
 			color: #333333;
 			outline: 0;
-		}
-		label
-		{
-		  display: block;
-		  letter-spacing: 4px;
-		  padding-top: 30px;
-		  text-align: center;
-		}
-		label .label-text {
-		  color: #9B9B9B;
-		  cursor: text;
-		  font-size: 20px;
-		  line-height: 20px;
-		  text-transform: uppercase;
-		  -moz-transform: translateY(-34px);
-		  -ms-transform: translateY(-34px);
-		  -webkit-transform: translateY(-34px);
-		  transform: translateY(-34px);
-		  transition: all 0.3s;
-		}
-		label input {
-		  background-color: transparent;
-		  border: 0;
-		  border-bottom: 2px solid #4A4A4A;
-		  color: white;
-		  font-size: 36px;
-		  letter-spacing: -1px;
-		  outline: 0;
-		  padding: 5px 20px;
-		  text-align: center;
-		  transition: all 0.3s;
-		  width: 200px;
-		}
-		label input:focus {
-		  max-width: 100%;
-		  width: 400px;
-		}
-		label input:focus + .label-text {
-		  color: #F0F0F0;
-		  font-size: 13px;
-		  -moz-transform: translateY(-74px);
-		  -ms-transform: translateY(-74px);
-		  -webkit-transform: translateY(-74px);
-		  transform: translateY(-74px);
-		}
-		label input:valid + .label-text {
-		  font-size: 13px;
-		  -moz-transform: translateY(-74px);
-		  -ms-transform: translateY(-74px);
-		  -webkit-transform: translateY(-74px);
-		  transform: translateY(-74px);
-		}
-
-		button 
-		{
-		  text-transform: uppercase;
-		  transition: all 200ms;
 		}
 		</style>
 			 
@@ -322,88 +269,79 @@
 		<!--BODY-->
 		
 		<div id="otherContent" class="w3-container" style="margin-top: 0px;">
-		
-			<div class="info-card w3-card-4 w3-center" style="padding-top:50px;padding-bottom:50px;height:150px">
-				<div class="w3-bar">
-					<button class="w3-button w3-mobile w3-black" style="width:40%" onclick="document.getElementById('id01').style.display='block'">Admin Login</button>
-					<button class="w3-button w3-mobile w3-black" style="width:40%" onclick="document.getElementById('id02').style.display='block'">Check hours</button>
-				</div>
-			</div>
-		
-			<!--Admin Login modal-->
-			<div id="id01" class="w3-modal" onclick="this.style.display:"none">
-				<div class="w3-modal-content w3-animate-zoom w3-card-4">
-					<header class="w3-container w3-teal" style="background-color: #333333;font-family: "Open Sans", Helvetica;">  
-						<span onclick="document.getElementById('id01').style.display='none'" 
-							class="w3-button w3-display-topright">&times;</span>
-						<h2>Login Page</h2>
-					</header>
-					<div class="w3-container" style="background-color: #333333;padding-left:0px;padding-right:0px;">
-						<form action="admin.php" method="post" name="login_form" style="text-align:center">
-							<label>
-								<input type="text" name="uname" required/>
-								<div class="label-text">Username</div>
-							</label>
-							<label>
-								<input type="password" name="pwd" id="password" required/>
-								<div class="label-text">Password</div>
-							</label>
-							<footer class="w3-container w3-teal">
-								<p><button id="formButton" value="Login">Login</button></p>
-							</footer>
-						</form>
+			<div class="info-card w3-card-4" style="padding-bottom:10px">
+				<?php
+					$servername = "localhost";
+					$username = "guest";
+					$password = "";
+					$dbname = "devanks";
+					$rollno = $_POST['rollno'];
+
+					// Create connection
+					$conn = new mysqli($servername, $username, $password, $dbname);
+					// Check connection
+					if ($conn->connect_error) {
+						die("Connection failed: " . $conn->connect_error);
+					}
+
+					$sql = "SELECT roll_number,name,social,farm,project FROM student_list WHERE roll_number='$rollno'";
+					$result = mysqli_query($conn, $sql);
+
+					if (mysqli_num_rows($result) > 0) {
+						// output data of row
+							$row = mysqli_fetch_assoc($result);
+					} else {
+						echo "No record exist";
+					}
+
+					$conn->close();
+				?>
+				<header id="headerInfo" class="w3-container w3-center" style="width:100%">
+					<h1><?php echo $row["name"] ?></h1>
+					<h3><?php echo $row["roll_number"] ?></h3>
+				</header>
+				<div class="w3-container" style="padding-left:10px;padding-right:10px">
+					<div class="w3-container w3-large w3-cell" style="padding-top:10px;padding-bottom:10px">
+						<b>Social Work</b>
+					</div>
+					<div class="w3-light-grey w3-round-xlarge">
+						<?php 
+							$social = $row["social"]*20;
+							echo '<div class="w3-container w3-blue w3-center w3-round-xlarge" style="width:' . $social . '%">' . $row["social"] . '</div>'
+						?>
+					</div>
+					<div class="w3-container w3-large w3-cell" style="padding-top:10px;padding-bottom:10px">
+						<b>Farm Work</b>
+					</div>
+					<div class="w3-light-grey w3-round-xlarge">
+						<?php 
+							$farm = $row["farm"]*20;
+							echo '<div class="w3-container w3-yellow w3-center w3-round-xlarge" style="width:' . $farm . '%">' . $row["farm"] . '</div>'
+						?>
+					</div>
+					<div class="w3-container w3-large w3-cell" style="padding-top:10px;padding-bottom:10px">
+						<b>Project Work</b>
+					</div>
+					<div class="w3-light-grey w3-round-xlarge">
+						<?php 
+							$project = $row["project"]*20;
+							echo '<div class="w3-container w3-red w3-center w3-round-xlarge" style="width:' . $project . '%">' . $row["project"] . '</div>'
+						?>
+					</div>
+					<div class="w3-container w3-large w3-cell" style="padding-top:10px;padding-bottom:10px">
+						<h3><u><b>Total Hours</b></u></h4>
+					</div>
+					<div class="w3-light-grey w3-round-xlarge">
+						<?php 
+							$total = $row["project"] + $row["farm"] + $row["social"];
+							$totalp = $total*100/15;
+							echo '<div class="w3-container w3-purple w3-center w3-round-xlarge" style="width:' . $totalp . '%">' . $total . '</div>'
+						?>
 					</div>
 				</div>
-			</div>
-			
-			<!--Check user hours modal-->
-			<div id="id02" class="w3-modal" onclick="this.style.display:"none">
-				<div class="w3-modal-content w3-animate-zoom w3-card-4">
-					<header class="w3-container w3-teal" style="background-color: #333333;font-family: "Open Sans", Helvetica;">  
-						<span onclick="document.getElementById('id02').style.display='none'" 
-							class="w3-button w3-display-topright">&times;</span>
-						<h2>Hour Check</h2>
-					</header>
-					<div class="w3-container" style="background-color: #333333;padding-left:0px;padding-right:0px;">
-						<form action="user.php" method="post" name="roll_form" style="text-align:center">
-							<label>
-								<input type="text" name="rollno" id="rollno" required/>
-								<div class="label-text">Rollnumber</div>
-							</label>
-							<footer class="w3-container w3-teal">
-								<p><button id="formButton">Check</button></p>
-							</footer>
-						</form>
-					</div>
-				</div>
+				<a href="hour.html"><button style="margin-left:450px;margin-right:auto" id="formButton">Go Back</button></a>
 			</div>
 		</div>
-		
-		<!--Modal close function-->
-		<script>
-		// Get the modal
-		var modal1 = document.getElementById('id01');
-
-		// When the user clicks anywhere outside of the modal, close it
-		window.onclick = function(event)
-		{
-			if (event.target == modal1) {
-				modal1.style.display = "none";
-			}
-		}
-		</script>
-		<script>
-		// Get the modal
-		var modal2 = document.getElementById('id02');
-
-		// When the user clicks anywhere outside of the modal, close it
-		window.onclick = function(event)
-		{
-			if (event.target == modal2) {
-				modal2.style.display = "none";
-			}
-		}
-		</script>
 		
 		<!-- FOOTER -->
 		
@@ -418,4 +356,11 @@
 			</div>
 		</div>
 	</body>
+	<?php
+	// remove all session variables
+	session_unset(); 
+
+	// destroy the session 
+	session_destroy(); 
+	?>
 </html>

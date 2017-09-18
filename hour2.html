@@ -8,7 +8,100 @@
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		<script src="jquery-3.2.1.js"></script>
 		<script src="jquery.touchSwipe.min.js"></script> 
-		     
+
+		<script>
+			// Get the loginModal
+			var loginModal = document.getElementById('#loginModal');
+
+			// When the user clicks anywhere outside of the loginModal, close it
+			window.onclick = function(event)
+			{
+				if (event.target == loginModal) {
+					loginModal.style.display = "none";
+				}
+			}
+		</script>
+		
+		<!--Inline styles-->
+		<style>
+
+		.container {
+			padding: 16px;
+		}
+
+		span.psw {
+			float: left;
+			padding-top: 16px;
+		}
+
+		/* The loginModal (background) */
+		.loginModal {
+			display: none; /* Hidden by default */
+			position: fixed; /* Stay in place */
+			z-index: 1; /* Sit on top */
+			left: 0;
+			top: 0;
+			width: 100%; /* Full width */
+			height: 100%; /* Full height */
+			overflow: auto; /* Enable scroll if needed */
+			background-color: rgb(0,0,0); /* Fallback color */
+			background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+			padding-top: 60px;
+		}
+
+		/* loginModal Content/Box */
+		.loginModal-content {
+			background-color: #fefefe;
+			margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+			border: 1px solid #888;
+			width: 80%; /* Could be more or less, depending on screen size */
+		}
+
+		/* The Close Button (x) */
+		.close {
+			position: absolute;
+			right: 25px;
+			top: 0;
+			color: #000;
+			font-size: 35px;
+			font-weight: bold;
+		}
+
+		.close:hover,
+		.close:focus {
+			color: red;
+			cursor: pointer;
+		}
+
+		/* Add Zoom Animation */
+		.animate {
+			-webkit-animation: animatezoom 0.6s;
+			animation: animatezoom 0.6s
+		}
+
+		@-webkit-keyframes animatezoom {
+			from {-webkit-transform: scale(0)} 
+			to {-webkit-transform: scale(1)}
+		}
+			
+		@keyframes animatezoom {
+			from {transform: scale(0)} 
+			to {transform: scale(1)}
+		}
+
+		/* Change styles for span and cancel button on extra small screens */
+		@media screen and (max-width: 300px) {
+			span.psw {
+			   display: block;
+			   float: none;
+			}
+			.cancelbtn {
+			   width: 100%;
+			}
+		}
+		</style>
+
+			 
 		<!--SIDEBAR FUNCTION-->
 			 
 		<script>
@@ -109,48 +202,27 @@
 		
 		<div id="stickyHeaderL" class="w3-bar w3-card-2 w3-large w3-hide-small w3-hide-medium" style="position: static; top: 0px;">
 		
-			<a 	class="w3-bar-item w3-btn w3-ripple" 
-				 
-				href="about.html" 
-				title="About NSS NITC">ABOUT
+			<a class="w3-bar-item w3-btn w3-ripple" href="about.html" title="About NSS NITC">ABOUT
 			</a>
 				
-			<a 	class="w3-bar-item w3-btn w3-ripple" 
-				 
-				href="activities.html" 
-				title="Activities">ACTIVITIES
+			<a class="w3-bar-item w3-btn w3-ripple" href="activities.html" title="Activities">ACTIVITIES
 			</a>
 				
-			<a 	class="w3-bar-item w3-btn w3-ripple" 
-				 
-				href="blood.html" 
-				title="Details on Blood Donations">BLOOD FORUM
+			<a class="w3-bar-item w3-btn w3-ripple" href="blood.html" title="Details on Blood Donations">BLOOD FORUM
 			</a>
 				
-			<a 	class="w3-bar-item w3-btn w3-ripple" 
-				 
-				href="index.php" 
-				title="Check NSS Hours">HOUR LIST
+			<a class="w3-bar-item w3-btn w3-ripple" href="hour.html" title="Check NSS Hours">HOUR LIST
 			</a>
 				
-			<a 	class="w3-bar-item w3-btn w3-ripple" 
-				 
-				href="contact.html" 
-				title="Contact us">CONTACT US
+			<a class="w3-bar-item w3-btn w3-ripple" href="contact.html" title="Contact us">CONTACT US
 			</a>
 			<form>
-				<a
-					href="file:///D:/Documents/Projects/WebP/Project%202/hours.html#" 
-					class="w3-bar-item w3-btn w3-ripple w3-right" id="goButton">
+				<a href="file:///D:/Documents/Projects/WebP/Project%202/hours.html#" class="w3-bar-item w3-btn w3-ripple w3-right" id="goButton">
 					Go
 				</a>
-				<input 
-					type="text" 
-					class="w3-bar-item w3-input w3-right" 
-					placeholder="Check Hours gained">	
+				<input type="text" class="w3-bar-item w3-input w3-right" placeholder="Check Hours gained">	
 			</form>
-		</div>
-		
+		</div>		
 		
 		<!-- HAMBURGER ICON AND NAV BAR -->
 		
@@ -207,7 +279,7 @@
 				
 			<a 	class="w3-bar-item w3-btn w3-ripple" 
 				 
-				href="index.php" 
+				href="hour.html" 
 				title="Check NSS Hours">HOUR LIST
 			</a>
 				
@@ -243,8 +315,59 @@
 		
 		<div id="otherContent" class="w3-container" style="margin-top: 0px;">
 		
-			
-		
+			<div class="info-card w3-card-4 w3-center" style="height:150px">
+				<div class="w3-center">
+					<div class="w3-bar" style="padding-bottom:50px;padding-top:45px">
+						<button class="w3-button w3-mobile" onclick="document.getElementById('id01').style.display='block'" style="width:33.33%;">Admin Login</button>
+						<button class="w3-button w3-mobile" onclick="document.getElementById('id02').style.display='block'" style="width:33.33%;">Student</button>
+					</div>
+				</div>
+			</div>
+			<!--Admin user login-->
+			<div id="id01" class="loginModal">
+			  
+			  <form class="loginModal-content w3-panel w3-card-4 animate" action="/action_page.php">
+				<div class="imgcontainer">
+				  <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close loginModal">&times;</span>
+				</div>
+
+				<div class="container">
+				  <label><b>Username</b></label>
+				  <input type="text" placeholder="Enter Username" name="uname" required>
+
+				  <label><b>Password</b></label>
+				  <input type="password" placeholder="Enter Password" name="psw" required>
+					
+				  <button type="submit">Login</button>
+				  <input type="checkbox" checked="checked"> Remember me
+				</div>
+
+				<div class="container" style="background-color:#f1f1f1">
+				  <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Login</button>
+				</div>
+			  </form>
+			  
+			</div>
+			<!--Check user hours-->
+			<div id="id02" class="loginModal">
+			  
+			  <form class="loginModal-content w3-panel w3-card-4 animate" action="/action_page.php">
+				<div class="imgcontainer">
+				  <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close loginModal">&times;</span>
+				</div>
+
+				<div class="w3-container">
+				  <label><b>RollNumber</b></label>
+				  <input type="text" placeholder="Enter rollnumber" name="rnumber" required>
+				</div>
+
+				<div class="w3-container" style="background-color:#f1f1f1">
+				  <button type="button" onclick="document.getElementById('id02').style.display='none'" class="cancelbtn">Check</button>
+				</div>
+			  </form>
+			  
+			</div>
+
 		</div>
 		
 		<!-- FOOTER -->

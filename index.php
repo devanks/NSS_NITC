@@ -217,17 +217,16 @@
 				href="contact.html" 
 				title="Contact us">CONTACT US
 			</a>
-			<form action="user.php" method="post" name="roll_form" style="text-align:center">
-				<button id="goButton"
+			<form>
+				<a
+					href="file:///D:/Documents/Projects/WebP/Project%202/hours.html#" 
 					class="w3-bar-item w3-btn w3-ripple w3-right" id="goButton">
 					Go
-				</button>
+				</a>
 				<input 
-					type="text"
-					class="w3-bar-item w3-input w3-right"
-					placeholder="Check Hours gained"
-					name="rollno"
-					id="rollno" required/>
+					type="text" 
+					class="w3-bar-item w3-input w3-right" 
+					placeholder="Check Hours gained">	
 			</form>
 		</div>
 		
@@ -339,19 +338,19 @@
 						<h2>Login Page</h2>
 					</header>
 					<div class="w3-container" style="background-color: #333333;padding-left:0px;padding-right:0px;">
-						<form action="admin.php" method="post" name="login_form" style="text-align:center">
+						<form action="includes/process_login.php" method="post" name="login_form" style="text-align:center">
 							<label>
-								<input type="text" name="uname" required/>
+								<input type="text" name="email" required/>
 								<div class="label-text">Username</div>
 							</label>
 							<label>
-								<input type="password" name="pwd" id="password" required/>
+								<input type="password" name="password" id="password" required/>
 								<div class="label-text">Password</div>
 							</label>
 							<footer class="w3-container w3-teal">
-								<p><button id="formButton" value="Login">Login</button></p>
+								<p><button id="formButton" value="Login" onclick="formhash(this.form, this.form.password);" >Login</button></p>
 							</footer>
-						</form>
+						</form> 
 					</div>
 				</div>
 			</div>
@@ -365,9 +364,9 @@
 						<h2>Hour Check</h2>
 					</header>
 					<div class="w3-container" style="background-color: #333333;padding-left:0px;padding-right:0px;">
-						<form action="user.php" method="post" name="roll_form" style="text-align:center">
+						<form style="text-align:center">
 							<label>
-								<input type="text" name="rollno" id="rollno" required/>
+								<input type="text" required/>
 								<div class="label-text">Rollnumber</div>
 							</label>
 							<footer class="w3-container w3-teal">
