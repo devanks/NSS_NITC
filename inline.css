@@ -1,3 +1,7 @@
+			#outerBody{
+				color:#000!important;background-color:#F5F5DC!important;
+			}
+			
 			.info-text
 			{
 				height:130px
@@ -8,7 +12,9 @@
 				margin-bottom: 16px;
 				width: 80%;
 				margin-left: auto;
-				margin-right:auto
+				font-family:sans-serif;
+				margin-right:auto;
+				color:#000!important;background-color:#C5DCA0!important;
 			}
 			.swipe-area 
 			{
@@ -21,7 +27,7 @@
 			}
 			.AWAD_title
 			{
-				font-size: 10pt; color: silver; font-weight: bold;
+				font-size: 10pt; color: white; font-weight: bold;
 			}
 			.AWAD_quotation
 			{
@@ -34,6 +40,26 @@
 			#stickyHeaderL {
 				width: 100%;
 				background:black;
-				color:white;
+				color:#fff!important;background-color:#000!important
 				margin-bottom: 10px;
 			}
+			#unStickyHeader{
+				color:#fff!important;background-color:#3A4E48!important;
+				
+			}
+			#stickyHeaderS{
+				color:#fff!important;background-color:#556B2F!important;
+
+			}
+			#mySideBar{
+				color:#000!important;background-color:#BDB76B!important;
+			}
+			#headerInfo{
+				color:#fff!important;background-color:#5B7553!important;
+			}
+			#footer-bar{
+				color:#000!important;background-color:#CBD4C2!important;
+			}
+			body
+			{
+				font-family: 'Source Sans Pro', sans-serif;
